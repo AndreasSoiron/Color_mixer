@@ -1,0 +1,37 @@
+ <html>
+ <head>
+ 	<title>jquery color mixer</title>
+ 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+ 	<script type="text/javascript" src="jquery-color/jquery.color.js"></script>
+    <script type="text/javascript" src="color_mixer.js"></script>
+ 	<script type="text/javascript">
+ 	$(function(){
+ 		$("button").on("click",function(){
+ 			color = Color_mixer.mix($.Color($('#color1').val()),$.Color($('#color2').val()));
+            $("html body").css("background-color",color.toHexString());
+ 		});
+
+        $('#color1').on("change",function(){
+            $(this).next().css("background-color",$('#color1').val());
+        })
+        $('#color2').on("change",function(){
+            $(this).next().css("background-color",$('#color2').val());
+        })
+
+ 	});
+
+ 	</script>
+ </head>
+ <body>
+
+ 	<input id="color1" placeholder="color 1" value="#F5FF00" style="float:left">
+    <div style="height:20px;width:20px;background-color:#F5FF00;float:left;"></div>
+    <div style="clear:both;"></div>
+ 	<input id="color2" placeholder="color 2" value="#00C2FF" style="float:left;">
+    <div style="height:20px;width:20px;background-color:#00C2FF;float:left;"></div>
+    <div style="clear:both;"></div>
+
+ 	<button>MIX!</button>
+ 
+ </body>
+ </html>
