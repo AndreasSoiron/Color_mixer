@@ -22,3 +22,8 @@ without Options:
 	result_color = Color_mixer.mix(color_1,color_2);
 	
 	$("body").css("background-color",result_color().toHexString());
+	
+	
+### Demo
+
+[Demo](http://www.andysoiron.de/demos/color_mixer "Demo")
