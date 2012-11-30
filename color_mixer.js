@@ -35,13 +35,24 @@ Color_mixer.toRgba = function(color){
 }
 
 Color_mixer.mix = function(color1,color2){
-  color1 = Color_mixer.toCymk(color1);
-  color2 = Color_mixer.toCymk(color2);
+  if(typeof(color1)=='object'&&(color1 instanceof Array)==false)
+    color1 = new Array(color1,color2);
 
-  C = (color1.c + color2.c)/2;
-  M = (color1.m + color2.m)/2;
-  Y = (color1.y + color2.y)/2;
-  K = (color1.k + color2.k)/2;
+  C = 0;
+  M = 0;
+  Y = 0;
+  K = 0;
+  for(var i=0;i<color1.length;i++){
+    color1[i] = Color_mixer.toCymk(color1[i]);
+    C += color1[i].c;
+    M += color1[i].m;
+    Y += color1[i].y;
+    K += color1[i].k;
+  }
+  C = C/color1.length;
+  M = M/color1.length;
+  Y = Y/color1.length;
+  K = K/color1.length;
   color = {c:C,m:M,y:Y,k:K};
   color = Color_mixer.toRgba(color);
   return color;

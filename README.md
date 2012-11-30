@@ -14,7 +14,7 @@ includes:
 	
 	<script type="text/javascript" src="color_mixer.js"></script>
 
-without Options:
+Mixing Colors:
 
 	color_1 = $.Color("#F5FF00");
 	color_2 = $.Color("#00C2FF");
@@ -22,6 +22,12 @@ without Options:
 	result_color = Color_mixer.mix(color_1,color_2);
 	
 	$("body").css("background-color",result_color().toHexString());
+	
+Mix more than two Colors:
+
+	colors = new Array($.Color('#F5FF00'), $.Color('#00C2FF'), $.Color('#00C2FF'));
+	
+	result_color = Color_mixer.mix(colors);
 	
 	
 ### Demo

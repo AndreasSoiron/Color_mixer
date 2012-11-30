@@ -6,8 +6,9 @@
     <script type="text/javascript" src="color_mixer.js"></script>
  	<script type="text/javascript">
  	$(function(){
+        color1 = new Array($.Color('#F5FF00'), $.Color('#00C2FF'), $.Color('#00C2FF'),$.Color('#F5FF00'),$.Color('#F5FF00'),$.Color('#F5FF00'),$.Color('#F5FF00'),$.Color('#F5FF00'),$.Color('#F5FF00'),$.Color('#F5FF00'));
  		$("button").on("click",function(){
- 			color = Color_mixer.mix($.Color($('#color1').val()),$.Color($('#color2').val()));
+ 			color = Color_mixer.mix(color1,$.Color($('#color2').val()));
             $("html body").css("background-color",color.toHexString());
  		});
 
