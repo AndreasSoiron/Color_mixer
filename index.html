@@ -1,4 +1,4 @@
- <html>
+ <html style="background-image:url(background.png);">
  <head>
  	<title>jquery color mixer</title>
  	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
@@ -6,10 +6,22 @@
     <script type="text/javascript" src="color_mixer.js"></script>
  	<script type="text/javascript">
  	$(function(){
-        color1 = new Array($.Color('#F5FF00'), $.Color('#00C2FF'), $.Color('#00C2FF'),$.Color('#F5FF00'),$.Color('#F5FF00'),$.Color('#F5FF00'),$.Color('#F5FF00'),$.Color('#F5FF00'),$.Color('#F5FF00'),$.Color('#F5FF00'));
+
  		$("button").on("click",function(){
- 			color = Color_mixer.mix(color1,$.Color($('#color2').val()));
-            $("html body").css("background-color",color.toHexString());
+            //initialize a jquery color object
+            color1 = $.Color($('#color1').val());
+
+            //set color alpha value
+            color1 = color1.alpha(parseFloat($('#color1_alpha').val()));
+
+            color2 = $.Color($('#color2').val());
+            color2 = color2.alpha(parseFloat($('#color2_alpha').val()));
+
+            //Mixing colors
+ 			color = Color_mixer.mix(color1,color2);
+
+            //set background color to result color
+            $("html body").css("background-color",color.toRgbaString());
  		});
 
         $('#color1').on("change",function(){
@@ -26,9 +38,11 @@
  <body>
 
  	<input id="color1" placeholder="color 1" value="#F5FF00" style="float:left">
+    <input id="color1_alpha" placeholder="alpha" style="float:left">
     <div style="height:20px;width:20px;background-color:#F5FF00;float:left;"></div>
     <div style="clear:both;"></div>
  	<input id="color2" placeholder="color 2" value="#00C2FF" style="float:left;">
+    <input id="color2_alpha" placeholder="alpha" style="float:left">
     <div style="height:20px;width:20px;background-color:#00C2FF;float:left;"></div>
     <div style="clear:both;"></div>
 

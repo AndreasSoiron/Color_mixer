@@ -16,7 +16,7 @@ Color_mixer.toCymk = function(color){
   magenta = ((magenta - black) / (255 - black));
   yellow  = ((yellow  - black) / (255 - black));
 
-  return {c:cyan,m:magenta,y:yellow,k:black/255};
+  return {c:cyan,m:magenta,y:yellow,k:black/255,a:color._rgba[3]};
 }
 
 Color_mixer.toRgba = function(color){
@@ -30,7 +30,7 @@ Color_mixer.toRgba = function(color){
   R = Math.round((1.0 - R) * 255.0 + 0.5);
   G = Math.round((1.0 - G) * 255.0 + 0.5);
   B = Math.round((1.0 - B) * 255.0 + 0.5);
-  color = $.Color(R,G,B,1);
+  color = $.Color(R,G,B,color.a);
   return color;
 }
 
@@ -42,18 +42,21 @@ Color_mixer.mix = function(color1,color2){
   M = 0;
   Y = 0;
   K = 0;
+  A = 0;
   for(var i=0;i<color1.length;i++){
     color1[i] = Color_mixer.toCymk(color1[i]);
     C += color1[i].c;
     M += color1[i].m;
     Y += color1[i].y;
     K += color1[i].k;
+    A += color1[i].a;
   }
   C = C/color1.length;
   M = M/color1.length;
   Y = Y/color1.length;
   K = K/color1.length;
-  color = {c:C,m:M,y:Y,k:K};
+  A = A/color1.length;
+  color = {c:C,m:M,y:Y,k:K,a:A};
   color = Color_mixer.toRgba(color);
   return color;
 }
