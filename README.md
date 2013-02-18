@@ -21,7 +21,7 @@ Mixing Colors:
 	
 	result_color = Color_mixer.mix(color_1,color_2);
 	
-	$("body").css("background-color",result_color().toHexString());
+	$("body").css("background-color",result_color.toHexString());
 	
 Mix more than two Colors:
 
